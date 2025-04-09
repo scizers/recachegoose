@@ -4,7 +4,7 @@ const Cacheman = require('recacheman');
 const noop = () => {};
 
 function Cache(options) {
-  this.prefix = options?.prefix || '';
+  this.prefix = options && options.prefix || '';
   this._cache = new Cacheman('cachegoose-cache', options);
 }
 
