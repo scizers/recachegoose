@@ -8,6 +8,11 @@ module.exports = function init(mongoose, cacheOptions = {}) {
   if (hasRun) return;
   hasRun = true;
 
+  // Ensure prefix is a string if provided
+  if (cacheOptions.prefix && typeof cacheOptions.prefix !== 'string') {
+    throw new Error('Cache prefix must be a string');
+  }
+
   init._cache = cache = require('./cache')(cacheOptions);
 
   require('./extend-query')(mongoose, cache);
